@@ -7,18 +7,40 @@
 //
 
 import UIKit
+import Reusable
 
-class TableViewCell: UITableViewCell {
+class TableViewCell: UITableViewCell, NibReusable {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+  @IBOutlet weak var collectionView: UICollectionView!
+  
+  var collectionViewOffset: CGFloat {
+    get {
+      return collectionView.contentOffset.x
     }
     
+    set {
+      collectionView.contentOffset.x = newValue
+    }
+  }
+
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+
+  override func setSelected(selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+    // Configure the view for the selected state
+  }
+  
+  func setCollectionViewDataSourceDelegate
+    <D: protocol<UICollectionViewDataSource, UICollectionViewDelegate>>
+    (dataSourceDelegate: D, forRow row: Int) {
+    collectionView.registerReusableCell(CollectionViewCell)
+    collectionView.delegate = dataSourceDelegate
+    collectionView.dataSource = dataSourceDelegate
+    collectionView.tag = row
+    collectionView.reloadData()
+  }
+  
 }

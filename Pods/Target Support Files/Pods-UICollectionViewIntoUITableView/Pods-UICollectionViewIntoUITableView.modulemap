@@ -1,0 +1,6 @@
+framework module Pods_UICollectionViewIntoUITableView {
+  umbrella header "Pods-UICollectionViewIntoUITableView-umbrella.h"
+
+  export *
+  module * { export * }
+}

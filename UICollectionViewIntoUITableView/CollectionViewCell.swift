@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import Reusable
 
-class CollectionViewCell: UICollectionViewCell {
+class CollectionViewCell: UICollectionViewCell, NibReusable {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+  @IBOutlet weak var rootView: UIView!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  func setup(cellColor cellColor: UIColor) {
+    rootView.backgroundColor = cellColor
+  }
 
 }
